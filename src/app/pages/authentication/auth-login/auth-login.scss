@@ -1,26 +1,66 @@
 .login-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+
+  // keep your gradient
   background: linear-gradient(to right, #bec1d6, #2196f3);
-}
+  overflow: hidden;
 
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  padding: 2rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  background-color: #ffffff;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 2rem;
+  // blurred background image on left side
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    // left: 0;
+    width: 50%; // half the container
+    height: 100%;
+    background: url("/assets/images/bg.png") center center / cover no-repeat;
+    filter: blur(12px);
+    opacity: 0.6; // adjust to your taste
+    z-index: 0;
   }
-}
 
-.full-width {
-  width: 100%;
-  margin-bottom: 1rem;
+  .login-card {
+    position: relative;
+    z-index: 1; // keeps card above image
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8); // glass effect
+    backdrop-filter: blur(8px);
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+  }
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .forgot-password {
+    margin-top: -0.5rem; // pulls it closer to the input
+    margin-bottom: 1rem; // keeps spacing before the Sign In button
+    font-size: 0.85rem;
+    text-align: right;
+
+    a {
+      color: #1976d2; // material blue
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

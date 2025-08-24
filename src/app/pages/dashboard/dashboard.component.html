@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">Dashboard</mat-toolbar>
+
+<div class="dashboard-container">
+  <mat-grid-list cols="3" rowHeight="200px">
+    @for (widget of widgets; track widget.title) {
+      <mat-grid-tile>
+        <mat-card>
+          <mat-card-title>{{ widget.title }}</mat-card-title>
+          <mat-card-content>{{ widget.content }}</mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>

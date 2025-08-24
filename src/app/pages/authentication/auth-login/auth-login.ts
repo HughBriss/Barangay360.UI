@@ -30,7 +30,7 @@ import { Router } from '@angular/router';
   templateUrl: './auth-login.html',
   styleUrls: ['./auth-login.scss'],
 })
-export class AuthLogin {
+export class AuthLoginComponent {
   loginForm: FormGroup;
   hidePassword = true;
 
@@ -68,5 +68,9 @@ export class AuthLogin {
         console.error('Login failed:', error);
       },
     });
+  }
+
+  onForgotPassword(e: any) {
+    console.log(e);
   }
 }

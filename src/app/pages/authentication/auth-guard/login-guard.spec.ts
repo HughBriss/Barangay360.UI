@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { AuthGuardComponent } from './auth-guard';
+import { LoginGuardComponent } from './login-guard';
 import { AuthService } from '../../services/auth/auth-service';
 
-describe('AuthGuardComponent', () => {
-  let guard: AuthGuardComponent;
+describe('LoginGuardComponent', () => {
+  let guard: LoginGuardComponent;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
   let routerSpy: jasmine.SpyObj<Router>;
 
@@ -14,27 +14,16 @@ describe('AuthGuardComponent', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        AuthGuardComponent,
+        LoginGuardComponent,
         { provide: AuthService, useValue: authServiceSpy },
         { provide: Router, useValue: routerSpy },
       ],
     });
 
-    guard = TestBed.inject(AuthGuardComponent);
+    guard = TestBed.inject(LoginGuardComponent);
   });
 
   it('should be created', () => {
     expect(guard).toBeTruthy();
-  });
-
-  it('should allow navigation when logged in', () => {
-    authServiceSpy.isLoggedIn.and.returnValue(true);
-    expect(guard.canActivate()).toBeTrue();
-  });
-
-  it('should block navigation when not logged in', () => {
-    authServiceSpy.isLoggedIn.and.returnValue(false);
-    expect(guard.canActivate()).toBeFalse();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
   });
 });

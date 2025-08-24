@@ -1,25 +1,16 @@
 <div class="login-container">
   <mat-card class="login-card">
-    <h2>Login</h2>
-
+    <h2>Sign in your account</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" type="text" />
-        <mat-error
-          *ngIf="
-            loginForm.get('username')?.hasError('required') &&
-            loginForm.get('username')?.touched
-          "
-        >
-          Username is required.
-        </mat-error>
-
-        <mat-error
-          *ngIf="loginForm.get('username')?.hasError('invalidCredentials')"
-        >
-          Invalid email or password.
-        </mat-error>
+        @if (loginForm.get('username')?.hasError('required') &&
+        loginForm.get('username')?.touched) {
+        <mat-error> Username is required. </mat-error>
+        } @if (loginForm.get('username')?.hasError('invalidCredentials')) {
+        <mat-error> Invalid email or password. </mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
@@ -40,16 +31,14 @@
             hidePassword ? "visibility_off" : "visibility"
           }}</mat-icon>
         </button>
-        <mat-error
-          *ngIf="
-            loginForm.get('password')?.invalid &&
-            loginForm.get('password')?.touched
-          "
-        >
-          Password is required.
-        </mat-error>
+        @if (loginForm.get('password')?.invalid &&
+        loginForm.get('password')?.touched) {
+        <mat-error> Password is required. </mat-error>
+        }
       </mat-form-field>
-
+      <div class="forgot-password">
+        <a href="#" (click)="onForgotPassword($event)">Forgot Password?</a>
+      </div>
       <button
         mat-raised-button
         color="primary"
