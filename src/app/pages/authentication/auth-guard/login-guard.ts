@@ -5,7 +5,6 @@ import { AuthService } from '../../services/auth/auth-service';
 @Injectable({ providedIn: 'root' })
 export class LoginGuardComponent implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
-
   canActivate(): boolean {
     if (this.auth.isLoggedIn()) {
       this.router.navigate(['/dashboard']);

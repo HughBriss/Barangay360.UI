@@ -1,14 +1,18 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { IconSetService } from '@coreui/icons-angular';
+import { routes } from './app.routes';
+import { DropdownModule, SidebarModule } from '@coreui/angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
+    IconSetService,
+    importProvidersFrom(SidebarModule, DropdownModule),
   ]
 };

@@ -1,0 +1,110 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    <h2>Create your account</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" type="text" />
+        @if (registerForm.get('firstName')?.hasError('required') &&
+        registerForm.get('firstName')?.touched) {
+        <mat-error>First name is required.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Middle Name</mat-label>
+        <input matInput formControlName="middleName" type="text" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" type="text" />
+        @if (registerForm.get('lastName')?.hasError('required') &&
+        registerForm.get('lastName')?.touched) {
+        <mat-error>Last name is required.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+        @if (registerForm.get('email')?.hasError('required') &&
+        registerForm.get('email')?.touched) {
+        <mat-error>Email is required.</mat-error>
+        } @if (registerForm.get('email')?.hasError('email')) {
+        <mat-error>Enter a valid email.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" type="text" />
+        @if (registerForm.get('username')?.hasError('required') &&
+        registerForm.get('username')?.touched) {
+        <mat-error>Username is required.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword = !hidePassword"
+        >
+          <mat-icon>{{
+            hidePassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        @if (registerForm.get('password')?.hasError('required') &&
+        registerForm.get('password')?.touched) {
+        <mat-error>Password is required.</mat-error>
+        } @if (registerForm.get('password')?.hasError('minlength')) {
+        <mat-error>Password must be at least 6 characters.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          matInput
+          [type]="hideConfirmPassword ? 'password' : 'text'"
+          formControlName="confirmPassword"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hideConfirmPassword = !hideConfirmPassword"
+        >
+          <mat-icon>{{
+            hideConfirmPassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        @if (registerForm.get('confirmPassword')?.hasError('passwordMismatch')
+        && registerForm.get('confirmPassword')?.touched) {
+        <mat-error>Passwords do not match.</mat-error>
+        }
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
+        Register
+      </button>
+
+      <div class="login-link">
+        <span>Already have an account?</span>
+        <a (click)="goToLogin()">Sign in</a>
+      </div>
+    </form>
+  </mat-card>
+</div>

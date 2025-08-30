@@ -1,0 +1,68 @@
+@use "@coreui/coreui/scss/coreui" as * with (
+  $enable-deprecation-messages: false
+);
+
+@use "theme";
+
+@use "custom";
+
+@use "examples";
+
+@use "@angular/material" as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  color-scheme: light;
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100%;
+}
+
+// styles.scss or app.component.scss
+
+$blur-start: 10px;
+$blur-end: 0;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    filter: blur($blur-start);
+  }
+  to {
+    opacity: 1;
+    filter: blur($blur-end);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    filter: blur($blur-end);
+  }
+  to {
+    opacity: 0;
+    filter: blur($blur-start);
+  }
+}
+
+.fade-enter {
+  animation: fadeIn 0.5s forwards;
+}
+
+.fade-leave {
+  animation: fadeOut 0.5s forwards;
+}

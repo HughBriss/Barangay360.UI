@@ -1,1 +1,6 @@
-<router-outlet />
+<div [ngClass]="{
+      'fade-enter': isEntering,
+      'fade-leave': isLeaving
+    }">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

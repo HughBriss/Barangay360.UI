@@ -27,8 +27,8 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatCardModule,
   ],
-  templateUrl: './auth-login.html',
-  styleUrls: ['./auth-login.scss'],
+  templateUrl: './auth-login.component.html',
+  styleUrls: ['./auth-login.component.scss'],
 })
 export class AuthLoginComponent {
   loginForm: FormGroup;
@@ -68,6 +68,10 @@ export class AuthLoginComponent {
         console.error('Login failed:', error);
       },
     });
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 
   onForgotPassword(e: any) {
